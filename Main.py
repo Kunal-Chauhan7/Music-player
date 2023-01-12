@@ -10,6 +10,8 @@ class musicplayer:
         photo = Label(self.root,image=self.bgimg).place(x=100,y=40)
         self.msg = "Let's rock☆*: .｡. o(≧▽≦)o .｡.:*☆"
         self.lab = Label(text=self.msg , fg="white" , bg="black").place(x=130 , y=5)
+        self.labl1 = Label(self.root,text="Let's play it !!")
+        self.labl1.pack(side=BOTTOM , fill= X)
         self.playButtonImg = ImageTk.PhotoImage(file="Playbut.png")
         playButton=Button(self.root,image=self.playButtonImg, bd=0 , background="sky blue").place(x=15 , y=290)
         self.pauseButtonImg = ImageTk.PhotoImage(file="pasuebut.png")
