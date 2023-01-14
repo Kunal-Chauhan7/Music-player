@@ -6,6 +6,12 @@ mixer.init()
 
 class musicplayer:
     def __init__(self , Tk):
+        def mute():
+            mixer.music.set_volume(0)
+            self.mutes = Button(self.root,image=self.mute,bd=0, command=unmute , background="sky blue").place(x=220,y=300)
+        def unmute():
+            mixer.music.set_volume(0.25)
+            volumeStatus = Button(self.root,image=self.unmute,command=mute,bd=0 , background="sky blue").place(x=220,y=300)
         def playmusic():
             try:
                 Paused
@@ -27,6 +33,9 @@ class musicplayer:
             Paused = TRUE
             mixer.music.pause()
             self.labl1['text'] = "Music paused"
+        def volumefun(vol):
+            volume = int(vol)/100
+            mixer.music.set_volume(volume)
         self.root = Tk
         self.root.title('Sugoi Music')
         self.root.geometry("450x400")
@@ -43,7 +52,14 @@ class musicplayer:
         pauseButton=Button(self.root,image=self.pauseButtonImg, bd=0 , background="sky blue",command=pausemusic).place(x=65 , y=290)
         self.stopButtonImg = ImageTk.PhotoImage(file="Stopbut.png")
         stopButton=Button(self.root,image=self.stopButtonImg, bd=0 , background="sky blue",command=stopmusic).place(x=115 , y=290)
-
+        self.labl2 = Label(self.root,text="Volume",fg="black",bg="sky blue",font='Helvetica 10 bold')
+        self.labl2.place(x=270,y=280)
+        self.volume = Scale(self.root,from_=0,to=100,orient=HORIZONTAL,bg="light grey" , length=160,bd=0,command=volumefun)
+        self.volume.place(x=270,y=300)
+        self.volume.set(25)
+        self.unmute = ImageTk.PhotoImage(file="unmute.png")
+        self.mute = ImageTk.PhotoImage(file="mute.png")
+        volumeStatus = Button(self.root,image=self.unmute,command=mute,bd=0 , background="sky blue").place(x=220,y=300)
 root = Tk()
 obj = musicplayer(root)
 root.mainloop()
